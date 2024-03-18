@@ -14,4 +14,3 @@ for barra in range(0, qtd_Barras):
         resultado = esforco_interno/42.67
         
     print(resultado)
-    print(teste)
