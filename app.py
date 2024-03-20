@@ -1,19 +1,26 @@
 from flask import Flask,render_template,request
 import os
-from model.entity.barra import Barra
-import json
-import jsonify
+from model.entity.tabela import *
 
 app = Flask(__name__, template_folder=os.path.abspath('view/templates'), static_folder=os.path.abspath("view/static"))
 
-lista_barras = []  
+lista_barras = [] 
 @app.route("/",methods = ['GET','POST'])
 def index():
     
        
     if request.method == "POST":
-        esforco_interno = float(request.form['esforco_interno'])
-        comprimento = float(request.form['comprimento'])
+        if not request.form['esforco_interno']:
+            esforco_interno = 0
+        else:
+            esforco_interno = float(request.form['esforco_interno'])
+
+        if not request.form['comprimento']:
+            comprimento = 0
+        else:
+            comprimento = float(request.form['comprimento'])
+
+        
         tipo = request.form['tipo']        
              
 
@@ -28,25 +35,24 @@ def index():
         else:
             qts_fios_de_macarrao = 0
 
-        barra = {
-            "esforco_interno" : str(esforco_interno),
-            "comprimento" : str(comprimento),
-            "tipo" : tipo,
-            "qtd_fios" : qts_fios_de_macarrao
-        }
-
-        barra_JSON = json.dumps(barra)
-
-        lista_barras.append(barra_JSON)
-        print(lista_barras)
+  
+        
+        lista_barras.append(Item(len(lista_barras) + 1,tipo,esforco_interno,comprimento,qts_fios_de_macarrao))        
         
 
-        return lista_barras
+        return monta_tabela(lista_barras) 
     return render_template('index.html',lista_barras = None)
 
     
         
-   
+def monta_tabela(lista_barras):    
+    table = ItemTable(lista_barras)
+    table.classes.append("table")
+    table.classes.append("table-striped")
+    table.classes.append("table-hover")   
+        
+
+    return table.__html__()
 
 
 
