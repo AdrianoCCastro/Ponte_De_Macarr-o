@@ -10,7 +10,7 @@ class ItemTable(Table):
     qtd_fios = Col('Qtd de fios')
 
 # Get some objects
-class Item(object):
+class Barra(object):
     def __init__(self,identificador, tipo, esforco_interno,comprimento ,qtd_fios):
         self.identificador = identificador
         self.tipo = tipo

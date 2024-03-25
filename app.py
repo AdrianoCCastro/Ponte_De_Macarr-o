@@ -37,7 +37,7 @@ def index():
 
   
         
-        lista_barras.append(Item(len(lista_barras) + 1,tipo,esforco_interno,comprimento,qts_fios_de_macarrao))        
+        lista_barras.append(Barra(len(lista_barras) + 1,tipo,esforco_interno,comprimento,qts_fios_de_macarrao))        
         
 
         return monta_tabela(lista_barras) 
