@@ -68,33 +68,38 @@
       </div>
     </div>
   </form>
-  <div id="output"></div>
+
+  <table class="table table-striped table-hover">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Tipo de Esforço</th>
+        <th>Esforco Interno</th>
+        <th>Comprimento</th>
+        <th>Qtd de fios</th>
+        <th>Deletar</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for barra in lista_barras %}
+    <tr>
+      <td>{{barra.identificador}}</td>
+      <td>{{barra.tipo}}</td>
+      <td>{{barra.esforco_interno}}</td>
+      <td>{{barra.comprimento}}</td>
+      <td>{{barra.qtd_fios}}</td>
+      <td><a href="{{url_for('deletar', _method='POST', id = barra.identificador)}}"><button class="btn btn-danger">Deletar</button></a></td>
+    </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+  
    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
     crossorigin="anonymous"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-  <script type="text/javascript">
-    $(document).ready(function() {
-      $('#form').on('submit',function(e){
-        $.ajax({
-          data : {
-            esforco_interno : $('#esforco_interno').val(),
-            comprimento : $('#comprimento').val(),
-            tipo : $('.form-check-input:checked').val(),
-          },
-          type : 'POST',
-          url : '/'
-        })
-        .done(function(data){
-          $('#output')
-          .html(data)
-          .show();
-        });
-        e.preventDefault();
-      });
-    });
-</script>
 </body>
 
 </html>
+

@@ -1,6 +1,6 @@
-from flask import Flask,render_template,request
+from flask import Flask,render_template,request,redirect
 import os
-from model.entity.tabela import *
+from model.entity.barra import Barra
 
 app = Flask(__name__, template_folder=os.path.abspath('view/templates'), static_folder=os.path.abspath("view/static"))
 
@@ -36,24 +36,29 @@ def index():
             qts_fios_de_macarrao = 0
 
   
-        
-        lista_barras.append(Barra(len(lista_barras) + 1,tipo,esforco_interno,comprimento,qts_fios_de_macarrao))        
-        
+        barra = Barra(len(lista_barras) + 1,tipo,esforco_interno,comprimento,qts_fios_de_macarrao) 
+        print(barra)         
 
-        return monta_tabela(lista_barras) 
-    return render_template('index.html',lista_barras = None)
+        lista_barras.append(barra)
+
+       
+        
+    return render_template('index.html',lista_barras = lista_barras)
 
     
-        
-def monta_tabela(lista_barras):    
-    table = ItemTable(lista_barras)
-    table.classes.append("table")
-    table.classes.append("table-striped")
-    table.classes.append("table-hover")   
-        
+@app.route("/<id>",methods = ['GET','POST'])
+def deletar(id):
+    cont = 0
+    for barra in lista_barras:
+        if barra.identificador == int(id):
+    
+            lista_barras.remove(barra)
 
-    return table.__html__()
+    for barra in lista_barras:
+        cont+=1
+        barra.identificador = cont       
 
+    return redirect('/')
 
 
 
