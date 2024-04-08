@@ -6,7 +6,7 @@ class Barra():
         self.esforco_interno = esforco_interno
         self.comprimento = comprimento
         self.qtd_fios = qtd_fios
-        
+        self.peso_linear = comprimento * qtd_fios
 
 
 

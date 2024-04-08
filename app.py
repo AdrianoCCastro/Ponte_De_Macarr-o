@@ -4,7 +4,18 @@ from model.entity.barra import Barra
 
 app = Flask(__name__, template_folder=os.path.abspath('view/templates'), static_folder=os.path.abspath("view/static"))
 
+
+def Total_peso_linear(lista_barras):
+    total_peso_linear = 0
+    for barra in lista_barras:
+        total_peso_linear+=barra.peso_linear
+    
+    return total_peso_linear * 0.03937
+
+
+
 lista_barras = [] 
+
 @app.route("/",methods = ['GET','POST'])
 def index():
     
@@ -34,6 +45,8 @@ def index():
 
         else:
             qts_fios_de_macarrao = 0
+        
+        qts_fios_de_macarrao = int(qts_fios_de_macarrao) + 1
 
   
         barra = Barra(len(lista_barras) + 1,tipo,esforco_interno,comprimento,qts_fios_de_macarrao) 
@@ -41,9 +54,9 @@ def index():
 
         lista_barras.append(barra)
 
-       
         
-    return render_template('index.html',lista_barras = lista_barras)
+        
+    return render_template('index.html',lista_barras = lista_barras,total_peso_linear = Total_peso_linear(lista_barras))
 
     
 @app.route("/<id>",methods = ['GET','POST'])
