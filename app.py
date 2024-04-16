@@ -73,6 +73,10 @@ def deletar(id):
 
     return redirect('/')
 
+@app.route("/imprimir",methods = ['GET','POST'])
+def imprimir():
+    
+    return render_template('imprimir.html',lista_barras = lista_barras,total_peso_linear = Total_peso_linear(lista_barras))
 
 
     

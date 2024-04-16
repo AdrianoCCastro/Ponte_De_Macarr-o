@@ -8,13 +8,13 @@
   <link href="{{url_for('static', filename = 'css/bootstrap.min.css')}}" rel="stylesheet">    
 </head>
 
-<body>
+<body style="padding: 0px 50px 50px;">
 
   <!-- As a heading -->
   <nav class="navbar bg-body-tertiary" style="margin-bottom: 20px ;">
     <div class="container-fluid">
       <span class="navbar-brand col-md-6 offset-md-5">Calcular barra de macarrão</span>
-    </div>
+    </div>    
   </nav>
   
   <form method="POST" id ="form" class="form">
@@ -63,7 +63,7 @@
     </div>
     <div class="form-group">
       <div class="row mb-3 col-md-6 offset-md-3 text-right">
-        <button type="submit" class="btn btn-primary">Calcular</button>
+        <button type="submit" class="btn btn-primary">Calcular</button>        
       </div>
     </div>
   </form>
@@ -100,7 +100,8 @@
         <th>Peso Metade da ponte (g)</th>
         <th>Peso total (g)</th>
         <th>Peso Macarrão (g)</th>
-        <th>Peso Cola (g)</th>        
+        <th>Peso Cola (g)</th>
+        <th>Imprimir</th>        
       </tr>
     </thead>
     <tbody>    
@@ -108,14 +109,16 @@
       <td>{{total_peso_linear}}</td>
       <td>{{total_peso_linear * 2}}</td>
       <td>{{(total_peso_linear * 2) * 0.5919}}</td>
-      <td>{{(total_peso_linear * 2) * 0.4381}}</td>            
-    </tr>
-    
+      <td>{{(total_peso_linear * 2) * 0.4381}}</td>
+      <td><a href="{{url_for('imprimir')}}"><button type="submit" class="btn btn-primary">Imprimir</button></a></td>           
+    </tr>    
     </tbody>
   </table>
+      
   {% endif %}  
   
   <script src="{{ url_for('static',filename = 'js/bootstrap.bundle.min.js') }}"></script>
+
 
 </body>
 

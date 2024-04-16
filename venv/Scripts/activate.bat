@@ -8,7 +8,7 @@ if defined _OLD_CODEPAGE (
     "%SystemRoot%\System32\chcp.com" 65001 > nul
 )
 
-set VIRTUAL_ENV=C:\Users\Jefferson\Projetos_Python\Ponte_De_Macarr-o\venv
+set VIRTUAL_ENV=C:\Users\FUSVE\Desktop\Ponte_De_Macarrao\venv
 
 if not defined PROMPT set PROMPT=$P$G
 
