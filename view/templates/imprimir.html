@@ -59,7 +59,11 @@
   <script src="{{ url_for('static',filename = 'js/bootstrap.bundle.min.js') }}"></script>
    
     <script>
-        window.print();         
+        window.print();
+        window.addEventListener("afterprint", (event) => {
+    
+          window.location.href = "{{url_for('index')}}" /* Retorna para o index após imprimir */
+        });         
     </script>
  
 </body>

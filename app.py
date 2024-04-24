@@ -50,7 +50,7 @@ def index():
 
   
         barra = Barra(len(lista_barras) + 1,tipo,esforco_interno,comprimento,qts_fios_de_macarrao) 
-        print(barra)         
+               
 
         lista_barras.append(barra)
 
