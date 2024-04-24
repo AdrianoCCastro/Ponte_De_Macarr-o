@@ -59,7 +59,7 @@ def index():
     return render_template('index.html',lista_barras = lista_barras,total_peso_linear = Total_peso_linear(lista_barras))
 
     
-@app.route("/<id>",methods = ['GET','POST'])
+@app.route("/deletar/<id>",methods = ['GET','POST'])
 def deletar(id):
     cont = 0
     for barra in lista_barras:
