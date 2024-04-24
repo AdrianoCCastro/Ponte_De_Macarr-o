@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ponte de Macarrão</title>
+  <link href="{{url_for('static', filename = 'css/bootstrap.min.css')}}" rel="stylesheet">    
+</head>
+
+<body>
+
+  <table class="table table-striped table-hover">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Tipo de Esforço</th>
+        <th>Esforco Interno</th>
+        <th>Comprimento</th>
+        <th>Qtd de fios</th>
+               
+      </tr>
+    </thead>
+    <tbody>
+    {% for barra in lista_barras %}
+    <tr>
+      <td>{{barra.identificador}}</td>
+      <td>{{barra.tipo}}</td>
+      <td>{{barra.esforco_interno}}</td>
+      <td>{{barra.comprimento}}</td>
+      <td>{{barra.qtd_fios}}</td>      
+    </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+
+  {% if total_peso_linear != 0.0 %}
+  <table class="table table-striped table-hover">
+    <thead>
+      <tr>        
+        <th>Peso Metade da ponte (g)</th>
+        <th>Peso total (g)</th>
+        <th>Peso Macarrão (g)</th>
+        <th>Peso Cola (g)</th>        
+      </tr>
+    </thead>
+    <tbody>    
+    <tr>
+      <td>{{total_peso_linear}}</td>
+      <td>{{total_peso_linear * 2}}</td>
+      <td>{{(total_peso_linear * 2) * 0.5919}}</td>
+      <td>{{(total_peso_linear * 2) * 0.4381}}</td>            
+    </tr>
+    
+    </tbody>
+  </table>
+  {% endif %}  
+  
+  <script src="{{ url_for('static',filename = 'js/bootstrap.bundle.min.js') }}"></script>
+   
+    <script>
+        window.print();         
+    </script>
+ 
+</body>
+
+</html>
