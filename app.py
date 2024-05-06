@@ -32,7 +32,8 @@ def index():
             comprimento = float(request.form['comprimento'])
 
         
-        tipo = request.form['tipo']        
+        tipo = request.form['tipo']
+        nome = request.form['nome']        
              
 
        
@@ -48,8 +49,10 @@ def index():
         
         qts_fios_de_macarrao = int(qts_fios_de_macarrao) + 1
 
+
+
   
-        barra = Barra(len(lista_barras) + 1,tipo,esforco_interno,comprimento,qts_fios_de_macarrao) 
+        barra = Barra(len(lista_barras) + 1,nome,tipo,esforco_interno,comprimento,qts_fios_de_macarrao) 
                
 
         lista_barras.append(barra)
